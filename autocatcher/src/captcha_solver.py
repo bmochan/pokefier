@@ -1,5 +1,4 @@
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
@@ -14,14 +13,18 @@ import discord
 from pydub import AudioSegment
 import speech_recognition as sr
 
-
+# TODO: smooth mouse movement along a bezier curve
 def SolveCaptcha(url: str) -> bool:
-    chrome_options = Options()
+    chrome_options = uc.ChromeOptions()
+
+    chrome_options.user_data_dir = "C:\\Temp\\Pokefier"
+
     chrome_options.add_argument(
         '--disable-blink-features=AutomationControlled')
+    chrome_options.add_argument('--disable-extensions')
 
     chrome = uc.Chrome(browser_executable_path="C:\Program Files\Google\Chrome\Application\chrome.exe",
-                       use_subprocess=True, chrome_options=chrome_options)
+                       use_subprocess=True, options=chrome_options)
 
     # redirecting to URL
     chrome.get(url)
