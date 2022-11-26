@@ -17,14 +17,12 @@ import speech_recognition as sr
 def SolveCaptcha(url: str) -> bool:
     chrome_options = uc.ChromeOptions()
 
-    chrome_options.user_data_dir = "C:\\Temp\\Pokefier"
-
     chrome_options.add_argument(
         '--disable-blink-features=AutomationControlled')
     chrome_options.add_argument('--disable-extensions')
 
     chrome = uc.Chrome(browser_executable_path="C:\Program Files\Google\Chrome\Application\chrome.exe",
-                       use_subprocess=True, options=chrome_options)
+                       use_subprocess=True, options=chrome_options, user_data_dir="C:\\Temp\\Pokefier")
 
     # redirecting to URL
     chrome.get(url)
